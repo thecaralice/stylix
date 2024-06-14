@@ -5,6 +5,7 @@
 
 let
   colors = config.lib.stylix.colors.withHashtag;
+  inherit (builtins) removeAttrs;
 in
 {
   options.stylix.targets.alacritty.enable = config.lib.stylix.mkEnableTarget "Alacritty" true;
@@ -33,21 +34,8 @@ in
           text = base00;
           cursor = base05;
         };
-        normal = {
-          black = base00;
-          white = base05;
-          inherit red green yellow blue magenta cyan;
-        };
-        bright = {
-          black = base03;
-          white = base07;
-          red = bright-red;
-          green = bright-green;
-          inherit yellow;
-          blue = bright-blue;
-          magenta = bright-magenta;
-          cyan = bright-cyan;
-        };
+        normal = removeAttrs colors.ansi.dark ["toList"];
+        bright = removeAttrs colors.ansi.bright ["toList"];
       };
     };
   };

@@ -8,8 +8,8 @@ in {
   config = lib.mkIf (config.stylix.enable && config.stylix.targets.wezterm.enable && config.programs.wezterm.enable) {
 
     programs.wezterm.colorSchemes.stylix = with colors; {
-      ansi = [ base00 base08 base0B base0A base0D base0E base0C base05 ];
-      brights = [ base03 base08 base0B base0A base0D base0E base0C base07 ];
+      ansi = colors.ansi.dark.toList;
+      brights = colors.ansi.bright.toList;
       background = base00;
       cursor_bg = base05;
       cursor_fg = base00;
